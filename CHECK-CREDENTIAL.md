@@ -1,4 +1,4 @@
-
+# Check a verifiable credential
 
 ```
 curl --request POST \
