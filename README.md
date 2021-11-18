@@ -15,7 +15,7 @@ minikube addons enable ingress
 ## Setup resources
 
 ```bash
-git clone -b 289-improve-kubernetes-api-resiliency https://github.com/iotaledger/integration-services
+git clone https://github.com/iotaledger/integration-services
 cd integration-services
 kubectl apply -f kubernetes/optional/
 kubectl apply -f kubernetes
@@ -44,6 +44,14 @@ You can check if everything is up and running with the following:
 curl http://ensuresec.solutions.iota.org/info
 ```
 
+## Database access
+
+In order to access database you can map MongoDB port on the local host:
+
+```
+kubectl port-forward service/mongodb-service 27017:27017
+```
+
 # Exercise
 
 You can go and practice with the `clients/summer-school-client` to create credential and verifiable credentials.
@@ -53,5 +61,18 @@ You can use as configuration inside the project a `.env` file with the following
 ```
 BASE_URL=http://ensuresec.solutions.iota.org/api/v1
 API_KEY=94F5BA49-12B6-4E45-A487-BF91C442276D
+```
+
+# NOTE
+
+You need to add the issuer of the professor verifiable credential as trusted root in the database:
+`did:iota:FSAMVdZqbUTaTHnL6yNGzPzuxTNLuE5VEbz7SndkgYCP`
+
+# Tools
+
+See an identity on IOTA explorer:
+
+```
+https://explorer.iota.org/mainnet/indexed/[DID suffix (i.e. remove did:iota: from the ID)]
 ```
 
